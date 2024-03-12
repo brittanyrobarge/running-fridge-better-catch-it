@@ -1,45 +1,59 @@
-import React, { useState, useEffect } from 'react';
-
 const SignUp = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: ''
-    });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-    };
-
-    useEffect(() => {
-        console.log('Form data changed:', formData);
-    }, [formData]);
-
+        e.preventDefault()
+        console.log('login')
+    }
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Username:</label>
-                <input type="text" name="username" value={formData.username} onChange={handleChange} />
+        <div className="row">
+            <div className="col-md-6 offset-md-3">
+                <h1>SignUp</h1>
+                <form>
+                    <div className="mb-3">
+                        <label
+                            htmlFor="SignUp__username"
+                            className="form-label"
+                        >
+                            Username
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="SignUp__username"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label
+                            htmlFor="SignUp__password"
+                            className="form-label"
+                        >
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="SignUp__password"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label
+                            htmlFor="SignUp__password_confirmation"
+                            className="form-label"
+                        >
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="SignUp__password_confirmation"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-success">
+                        Submit
+                    </button>
+                </form>
             </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" value={formData.password} onChange={handleChange} />
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
-    );
-};
+        </div>
+    )
+}
 
-export default SignUp;
+export default SignUp

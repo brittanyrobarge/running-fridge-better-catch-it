@@ -56,4 +56,4 @@ async def get_token(
             "access_token": request.cookies[authenticator.cookie_name],
             "type": "Bearer",
             "account": account,
-        }  
+        }
