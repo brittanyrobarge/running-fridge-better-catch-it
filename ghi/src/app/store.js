@@ -1,18 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
-import queryReducer from './querySlice'
-import { accountApi } from './apiSlice'
-import { fridgeApi } from './fridgeSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import queryReducer from './querySlice';
+import { accountApi } from './apiSlice';
+import { fridgeApi } from './fridgeSlice';
+import userReducer from './userSlice';
 import itemsReducer from './itemSlice'
 
 export const store = configureStore({
-    reducer: {
-        query: queryReducer,
-        [accountApi.reducerPath]: accountApi.reducer,
-        [fridgeApi.reducerPath]: fridgeApi.reducer,
+  reducer: {
+    query: queryReducer,
+    [accountApi.reducerPath]: accountApi.reducer,
+    [fridgeApi.reducerPath]: fridgeApi.reducer,
         items: itemsReducer,
-    },
-    middleware: (getDefaultMiddleware) => //this is async await
-        getDefaultMiddleware().concat(accountApi.middleware, fridgeApi.middleware)
-})
+    user: userReducer, // Add the user reducer to the store's reducers
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(accountApi.middleware, fridgeApi.middleware),
+});
 
-// Global state for entire app... create query or api in file and import into store
+export default store;

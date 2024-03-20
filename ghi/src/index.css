@@ -9,3 +9,8 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+/* You should probably replace with with your own CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
