@@ -1,19 +1,20 @@
 import React from 'react'
 import {
-    useGetAllBeveragesQuery,
-    useDeleteBeverageMutation,
-} from './app/fridgeSlice'
+    useGetAllProteinsQuery,
+    useDeleteProteinMutation,
+} from '../app/fridgeSlice'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-function BeverageList() {
-    const { data, isLoading } = useGetAllBeveragesQuery()
-    const [deleteBeverage] = useDeleteBeverageMutation()
+function ProteinList() {
+    const { data, isLoading } = useGetAllProteinsQuery()
+    const [deleteProtein] = useDeleteProteinMutation()
 
     const handleDelete = async (item_id) => {
         try {
-            await deleteBeverage(item_id)
+            await deleteProtein(item_id)
+            // Optionally, trigger a refetch or manage state locally
         } catch (error) {
             console.error('Error deleting item:', error)
         }
@@ -28,7 +29,7 @@ function BeverageList() {
     return (
         <div className="p-6 fridge-bg min-h-screen">
             <h1 className="text-2xl font-bold mb-6 text-blue-800">
-                Beverages in the Fridge
+                Proteins in the Fridge
             </h1>
             <div
                 className={`p-6 ${
@@ -38,10 +39,11 @@ function BeverageList() {
                 <button onClick={toggleLight} className="btn btn-sm">
                     {lightOn ? 'Turn Light Off' : 'Turn Light On'}
                 </button>
+                {/* The rest of your component */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {data.map((beverage, index) => (
+                {data.map((protein, index) => (
                     <motion.div
-                        key={beverage.id}
+                        key={protein.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: index * 0.1 }}
@@ -49,25 +51,25 @@ function BeverageList() {
                             index < data.length - 1 ? 'shelf' : ''
                         }`}
                     >
-                        <h3 className="font-bold">{beverage.name}</h3>
-                        <p>Cost: {beverage.cost}</p>
-                        <p>Expiration: {beverage.expiration_date}</p>
-                        <p>Measurement: {beverage.measurement}</p>
+                        <h3 className="font-bold">{protein.name}</h3>
+                        <p>Cost: {protein.cost}</p>
+                        <p>Expiration: {protein.expiration_date}</p>
+                        <p>Measurement: {protein.measurement}</p>
                         <div className="flex justify-between mt-4">
                             <Link
-                                to={`/beverages/${beverage.id}`}
+                                to={`/proteins/${protein.id}`}
                                 className="btn btn-sm btn-info"
                             >
                                 Details
                             </Link>
                             <button
-                                onClick={() => handleDelete(beverage.id)}
+                                onClick={() => handleDelete(protein.id)}
                                 className="btn btn-sm btn-error"
                             >
                                 Delete
                             </button>
                             <Link
-                                to={`/beverages/${beverage.id}/update`}
+                                to={`/proteins/${protein.id}/update`}
                                 className="btn btn-sm btn-warning"
                             >
                                 Update
@@ -81,4 +83,4 @@ function BeverageList() {
     )
 }
 
-export default BeverageList
+export default ProteinList
