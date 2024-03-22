@@ -1,7 +1,7 @@
 ## MAR 22, 2024
 Today, I worked on:
-*
-*
+*all of the pages are finished and up to date with the user. finished the css on all of them to look the same and have the uniform code. created another test to test the account files/ gives a response to show user and password was added.
+*finishing up our final push and restructuring the code to look as most uniform as possible without pseudo code. doing all of the flake8 tests to make sure everything is up to date for the finish. ReadME is updated. finished!
 ## MAR 21, 2024
 Today, I worked on:
 *finished the  protein/produce pages with the add, create and update attached to them
