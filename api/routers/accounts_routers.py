@@ -6,7 +6,7 @@ from authenticator import authenticator
 router = APIRouter(tags=["Authentication"], prefix="/api/auth")
 
 
-@router.post("/accounts", response_model = AccountToken)
+@router.post("/accounts", response_model=AccountToken)
 async def create(
     info: AccountIn,
     request: Request,
@@ -26,7 +26,7 @@ async def create(
     return AccountToken(account=account, **token.dict())
 
 
-@router.get("/token", response_model = AccountToken | None)
+@router.get("/token", response_model=AccountToken | None)
 async def get(
     request: Request,
     account: AccountOut = Depends(authenticator.try_get_current_account_data)
@@ -39,7 +39,7 @@ async def get(
         }
 
 
-@router.get("/token", response_model = AccountToken | None)
+@router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
     account: Account = Depends(authenticator.try_get_current_account_data)
