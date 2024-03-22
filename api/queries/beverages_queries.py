@@ -41,7 +41,7 @@ def get_all_for_account(self,
 
 
 def add_beverage(self, item: ItemIn,
-                    account_id: str) -> Union[ItemOut, Error]:
+                 account_id: str) -> Union[ItemOut, Error]:
     beverage_queries = MongoQueries(collection_name="beverages")
     try:
         item_dict = item.dict()
@@ -58,7 +58,7 @@ def add_beverage(self, item: ItemIn,
 
 
 def item_in_to_out(self, id: int, account_id: str,
-                    item: ItemIn) -> ItemOut:
+                   item: ItemIn) -> ItemOut:
     return ItemOut(id=id, account_id=account_id, **item.dict())
 
 
@@ -93,8 +93,8 @@ def record_to_item_out(self, record) -> ItemOut:
         record['measurement'] = str(record['measurement'])
     if 'store_name' in record:
         record['store_name'] = str(record['store_name'])
-    required_fields = ['id', 'name', 'cost', 'expiration_date',
-                        'measurement']
+    required_fields = ['id', 'name', 'cost',
+                       'expiration_date', 'measurement']
     for field in required_fields:
         if field not in record:
             print(f'Missing field: {field}')
