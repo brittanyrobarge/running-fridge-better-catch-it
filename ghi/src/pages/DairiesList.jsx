@@ -1,7 +1,4 @@
-import {
-    useGetAllDairyQuery,
-    useDeleteDairyMutation,
-} from '../app/fridgeSlice'
+import { useGetAllDairyQuery, useDeleteDairyMutation } from '../app/fridgeSlice'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
