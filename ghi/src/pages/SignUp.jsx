@@ -12,15 +12,15 @@ const SignUp = () => {
     const [signUp, signUpResponse] = useCreateAccountMutation()
 
     useEffect(() => {
-        if (signupResponse.isSuccess) {
+        if (signUpResponse.isSuccess) {
             navigate('/')
         }
-        if (signupResponse.isError) {
+        if (signUpResponse.isError) {
             setErrorMessage(
                 'An error occurred during sign up. Please try again.'
             )
         }
-    }, [signupResponse, navigate])
+    }, [signUpResponse, navigate])
 
     const handleSubmit = (e) => {
         e.preventDefault()
