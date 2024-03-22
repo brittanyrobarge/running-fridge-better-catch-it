@@ -4,6 +4,7 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_create_account_success():
     account_info = {"username": "test_user", "password": "test_password"}
     response = client.post("/api/auth/accounts", json=account_info)
