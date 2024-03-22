@@ -57,7 +57,6 @@ const Profile = () => {
                             </li>
                         </ul>
                     </div>
-                    {/* Content based on active tab */}
                     <div className="mt-4 lg:mt-8">
                         {activeTab === 'recipes' && (
                             <div>

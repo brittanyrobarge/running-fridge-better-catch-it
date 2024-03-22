@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 function UpdateProduce() {
     const { item_id } = useParams()
     const navigate = useNavigate()
-    // const dispatch = useDispatch
     const { data: produce, refetch, error } = useGetProduceQuery(item_id)
     const [updateProduce] = useUpdateProduceMutation()
     const [isLoading, setIsLoading] = useState(false)
@@ -19,8 +18,6 @@ function UpdateProduce() {
         measurement: '',
         store_name: '',
     })
-
-    // dispatch(produceUpdated(response.data))
 
     useEffect(() => {
         if (produce) {
@@ -48,29 +45,15 @@ function UpdateProduce() {
         setIsLoading(true)
         try {
             await updateProduce({ item_id, updatedData: formData }).unwrap()
-
-            // dispatchEvent(ProduceUpdated(response.data))
             navigate('/Produce')
             console.log('Calling refetch...')
-            // Optionally, redirect to a different page after successful update
-            // history.push('/produces');
         } catch (error) {
             console.error('Error updating produce:', error)
         } finally {
             setIsLoading(false)
         }
     }
-
-    // const changeHandler = (e) => {
-    //     e.preventDefault()
-    //     setName(e.target.value)
-    // }
-
-    // const submitToRedux = (e, item_id) => {
-    //     e.preventDefault()
-    //     changeName(item_id)
-    // }
-
+    
     console.log('isLoading:', isLoading)
 
     if (isLoading) return <div>Loading...</div>

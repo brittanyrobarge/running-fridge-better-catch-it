@@ -10,11 +10,11 @@ const SignUp = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
 
-    const [signup, signupResponse] = useCreateAccountMutation()
+    const [signUp, signUpResponse] = useCreateAccountMutation()
 
     useEffect(() => {
-        if (signupResponse.isSuccess) navigate('/')
-    }, [signupResponse])
+        if (signUpResponse.isSuccess) navigate('/')
+    }, [signUpResponse])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,7 +24,7 @@ const SignUp = () => {
             setErrorMessage('Password and confirmation do not match.')
             return
         }
-        signup({ username, password })
+        signUp({ username, password })
     }
 
     return (

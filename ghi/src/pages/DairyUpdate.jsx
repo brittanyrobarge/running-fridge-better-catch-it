@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux'
 function UpdateDairy() {
     const { item_id } = useParams()
     const navigate = useNavigate()
-    // const dispatch = useDispatch
     const { data: dairy, refetch, error } = useGetDairyQuery(item_id)
     const [updateDairy] = useUpdateDairyMutation()
     const [isLoading, setIsLoading] = useState(false)
@@ -23,8 +22,6 @@ function UpdateDairy() {
         measurement: '',
         store_name: '',
     })
-
-    // dispatch(dairyUpdated(response.data))
 
     useEffect(() => {
         if (dairy) {
@@ -50,28 +47,14 @@ function UpdateDairy() {
         setIsLoading(true)
         try {
             await updateDairy({ item_id, updatedData: formData }).unwrap()
-
-            // dispatchEvent(dairyUpdated(response.data))
             navigate('/dairies')
             console.log('Calling refetch...')
-            // Optionally, redirect to a different page after successful update
-            // history.push('/dairys');
         } catch (error) {
             console.error('Error updating dairy:', error)
         } finally {
             setIsLoading(false)
         }
     }
-
-    // const changeHandler = (e) => {
-    //     e.preventDefault()
-    //     setName(e.target.value)
-    // }
-
-    // const submitToRedux = (e, item_id) => {
-    //     e.preventDefault()
-    //     changeName(item_id)
-    // }
 
     console.log('isLoading:', isLoading)
 

@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 function UpdateProtein() {
     const { item_id } = useParams()
     const navigate = useNavigate()
-    // const dispatch = useDispatch
     const { data: protein, refetch, error } = useGetProteinQuery(item_id)
     const [updateProtein] = useUpdateProteinMutation()
     const [isLoading, setIsLoading] = useState(false)
@@ -19,9 +18,6 @@ function UpdateProtein() {
         measurement: '',
         store_name: '',
     })
-
-    // dispatch(ProteinUpdated(response.data))
-
     useEffect(() => {
         if (protein) {
             setFormData({
@@ -48,29 +44,15 @@ function UpdateProtein() {
         setIsLoading(true)
         try {
             await updateProtein({ item_id, updatedData: formData }).unwrap()
-
-            // dispatchEvent(ProteinUpdated(response.data))
             navigate('/proteins')
             console.log('Calling refetch...')
-            // Optionally, redirect to a different page after successful update
-            // history.push('/Proteins');
         } catch (error) {
             console.error('Error updating protein:', error)
         } finally {
             setIsLoading(false)
         }
     }
-
-    // const changeHandler = (e) => {
-    //     e.preventDefault()
-    //     setName(e.target.value)
-    // }
-
-    // const submitToRedux = (e, item_id) => {
-    //     e.preventDefault()
-    //     changeName(item_id)
-    // }
-
+    
     console.log('isLoading:', isLoading)
 
     if (isLoading) return <div>Loading...</div>
