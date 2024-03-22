@@ -11,10 +11,12 @@ export const fridgeApi = createApi({
             refetchOnMountOrArgChange: true,
             providesTags: ['BeverageList'],
         }),
+
         getBeverage: builder.query({
             query: (item_id) => `/api/beverages/beverages/${item_id}`,
             credentials: 'include',
         }),
+
         deleteBeverage: builder.mutation({
             query: (item_id) => ({
                 url: `api/beverages/beverages/${item_id}`,
@@ -43,10 +45,12 @@ export const fridgeApi = createApi({
             refetchOnMountOrArgChange: true,
             providesTags: ['GrainList'],
         }),
+
         getGrain: builder.query({
             query: (item_id) => `/api/grains/grains/${item_id}`,
             credentials: 'include',
         }),
+
         deleteGrain: builder.mutation({
             query: (item_id) => ({
                 url: `api/grains/grains/${item_id}`,
@@ -54,6 +58,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['GrainList'],
             }),
         }),
+
         updateGrain: builder.mutation({
             query: ({ item_id, updatedData }) => ({
                 url: `api/grains/grains/${item_id}`,
@@ -62,6 +67,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['GrainList'],
             }),
         }),
+
         createGrain: builder.mutation({
             query: (createData) => ({
                 url: '/api/grains/grains',
@@ -70,11 +76,13 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['GrainList'],
             }),
         }),
+
         getAllDairy: builder.query({
             query: () => '/api/dairies/dairies/mine',
             refetchOnMountOrArgChange: true,
             providesTags: ['DairyList'],
         }),
+
         getDairy: builder.query({
             query: (item_id) => `/api/dairies/dairies/${item_id}`,
             credentials: 'include',
@@ -86,6 +94,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['DairyList'],
             }),
         }),
+
         createDairy: builder.mutation({
             query: (createData) => ({
                 url: '/api/dairies/dairies',
@@ -94,6 +103,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['DairyList'],
             }),
         }),
+
         updateDairy: builder.mutation({
             query: ({ item_id, updatedData }) => ({
                 url: `api/dairies/dairies/${item_id}`,
@@ -102,21 +112,25 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['DairyList'],
             }),
         }),
+
         getAllProteins: builder.query({
             query: () => '/api/proteins/proteins/mine',
             refetchOnMountOrArgChange: true,
             providesTags: ['ProteinList'],
         }),
+
         getProtein: builder.query({
             query: (item_id) => `/api/proteins/proteins/${item_id}`,
             credentials: 'include',
         }),
+
         deleteProtein: builder.mutation({
             query: (item_id) => ({
                 url: `api/proteins/proteins/${item_id}`,
                 method: 'DELETE',
             }),
         }),
+
         updateProtein: builder.mutation({
             query: ({ item_id, updatedData }) => ({
                 url: `api/proteins/proteins/${item_id}`,
@@ -125,6 +139,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['ProteinList'],
             }),
         }),
+
         createProtein: builder.mutation({
             query: (proteinData) => ({
                 url: '/api/proteins/proteins',
@@ -133,21 +148,25 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['ProduceList'],
             }),
         }),
+
         getAllProduce: builder.query({
             query: () => '/api/produce/produce/mine',
             refetchOnMountOrArgChange: true,
             providesTags: ['ProduceList'],
         }),
+
         getProduce: builder.query({
             query: (item_id) => `/api/produce/produce/${item_id}`,
             credentials: 'include',
         }),
+
         deleteProduce: builder.mutation({
             query: (item_id) => ({
                 url: `api/produce/produce/${item_id}`,
                 method: 'DELETE',
             }),
         }),
+
         updateProduce: builder.mutation({
             query: ({ item_id, updatedData }) => ({
                 url: `api/produce/produce/${item_id}`,
@@ -156,6 +175,7 @@ export const fridgeApi = createApi({
                 invalidatesTags: ['ProduceList'],
             }),
         }),
+
         createProduce: builder.mutation({
             query: (produceData) => ({
                 url: '/api/produce/produce',
@@ -166,6 +186,7 @@ export const fridgeApi = createApi({
         }),
     }),
 })
+
 export const {
     useGetAllBeveragesQuery,
     useGetBeverageQuery,
@@ -191,5 +212,5 @@ export const {
     useGetAllProduceQuery,
     useGetProduceQuery,
     useUpdateProduceMutation,
-    useCreateProduceMutation
-} = fridgeApi;
+    useCreateProduceMutation,
+} = fridgeApi
