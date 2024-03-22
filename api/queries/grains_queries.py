@@ -51,8 +51,8 @@ class ItemRepository(MongoQueries):
             return Error(detail=str(e))
 
 
-    def item_in_to_out(self, id: int, account_id:str ,item: GrainItemIn) -> GrainItemOut:
-        return GrainItemOut(id=id, account_id=account_id ,**item.dict())
+    def item_in_to_out(self, id: int, account_id: str, item: GrainItemIn) -> GrainItemOut:
+        return GrainItemOut(id=id, account_id=account_id, **item.dict())
 
 
     def update_grain(self, item_id: int, account_id: str, item: GrainItemIn) -> Union[GrainItemOut, Error]:
