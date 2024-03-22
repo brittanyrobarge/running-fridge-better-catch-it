@@ -13,13 +13,13 @@ class MongoQueries:
         self.COLLECTION_NAME = collection_name
 
 
-@property
-def db(self):
-    return self.client[self.DB_NAME]
+    @property
+    def db(self):
+        return self.client[self.DB_NAME]
 
 
-@property
-def collection(self):
-    if self.COLLECTION_NAME is None:
-        raise ValueError("Collection name is not set.")
-    return self.db[self.COLLECTION_NAME]
+    @property
+    def collection(self):
+        if self.COLLECTION_NAME is None:
+            raise ValueError("Collection name is not set.")
+        return self.db[self.COLLECTION_NAME]

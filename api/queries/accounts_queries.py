@@ -19,15 +19,15 @@ class AccountRepo(MongoQueries):
         return None
 
 
-def create(self, info: AccountIn, hashed_password: str) -> Account:
-    accounts_queries = MongoQueries(collection_name="accounts")
-    account = info.dict()
-    account['hashed_password'] = hashed_password
-    del account['password']
-    try:
-        accounts_queries.collection.insert_one(account)
-    except DuplicateKeyError:
-        raise DuplicateAccountError
-    account['id'] = str(account['_id'])
-    del account['_id']
-    return Account(**account)
+    def create(self, info: AccountIn, hashed_password: str) -> Account:
+        accounts_queries = MongoQueries(collection_name="accounts")
+        account = info.dict()
+        account['hashed_password'] = hashed_password
+        del account['password']
+        try:
+            accounts_queries.collection.insert_one(account)
+        except DuplicateKeyError:
+            raise DuplicateAccountError
+        account['id'] = str(account['_id'])
+        del account['_id']
+        return Account(**account)
