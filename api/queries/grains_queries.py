@@ -4,10 +4,13 @@ from typing import Optional, Union, List
 from models.grains import GrainItemIn, GrainItemOut, Error
 from datetime import datetime
 
+
 class DuplicateAccountError(ValueError):
     pass
 
+
 class ItemRepository(MongoQueries):
+
 
     def get_grain(self, item_id: str, account_id: str) -> Optional[GrainItemOut]:
         grains_queries = MongoQueries(collection_name="grains")
@@ -17,10 +20,12 @@ class ItemRepository(MongoQueries):
         else:
             return {"message": f"Could not find that {item_id}"}
 
+
     def delete_grain(self, item_id: str, account_id: str) -> bool:
         grains_queries = MongoQueries(collection_name="grains")
         result = grains_queries.collection.delete_one({"_id": ObjectId(item_id), "account_id": account_id})
         return result.deleted_count > 0
+
 
     def get_all_for_account(self, account_id: str) -> Union[Error, List[GrainItemOut]]:
         grains_queries = MongoQueries(collection_name="grains")
@@ -29,6 +34,7 @@ class ItemRepository(MongoQueries):
             return [self.record_to_item_out(record) for record in records]
         except Exception as e:
             return Error(message=str(e))
+
 
     def add_grain(self, item: GrainItemIn, account_id: str) -> Union[GrainItemOut, Error]:
         grains_queries = MongoQueries(collection_name="grains")
@@ -44,8 +50,10 @@ class ItemRepository(MongoQueries):
         except Exception as e:
             return Error(detail=str(e))
 
+
     def item_in_to_out(self, id: int, account_id:str ,item: GrainItemIn) -> GrainItemOut:
         return GrainItemOut(id=id, account_id=account_id ,**item.dict())
+
 
     def update_grain(self, item_id: int, account_id: str, item: GrainItemIn) -> Union[GrainItemOut, Error]:
         grains_queries = MongoQueries(collection_name="grains")
@@ -61,6 +69,7 @@ class ItemRepository(MongoQueries):
             return self.item_in_to_out(item_id, account_id, item)
         else:
             return {"message": f"Could not update {item.name}"}
+
 
     def record_to_item_out(self, record) -> GrainItemOut:
         if '_id' in record:

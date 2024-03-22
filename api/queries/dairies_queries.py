@@ -1,14 +1,16 @@
 from queries.client import MongoQueries
 from bson import ObjectId
-from bson.errors import InvalidId
 from typing import Optional, Union, List
 from models.dairies import ItemIn, ItemOut, Error
 from datetime import datetime
 
+
 class DuplicateAccountError(ValueError):
     pass
 
+
 class ItemRepository(MongoQueries):
+
 
     def get_dairy(self, item_id: str, account_id: str) -> Optional[ItemOut]:
         dairies_queries = MongoQueries(collection_name="dairies")
@@ -18,10 +20,12 @@ class ItemRepository(MongoQueries):
         else:
             return {"message": f"Could not find that {item_id}"}
 
+
     def delete_dairy(self, item_id: str, account_id: str) -> bool:
         dairies_queries = MongoQueries(collection_name="dairies")
         result = dairies_queries.collection.delete_one({"_id": ObjectId(item_id), "account_id": account_id})
         return result.deleted_count > 0
+
 
     def get_all_for_account(self, account_id: str) -> Union[Error, List[ItemOut]]:
         dairies_queries = MongoQueries(collection_name="dairies")
@@ -30,6 +34,7 @@ class ItemRepository(MongoQueries):
             return [self.record_to_item_out(record) for record in records]
         except Exception as e:
             return Error(message=str(e))
+
 
     def add_dairy(self, item: ItemIn, account_id: str) -> Union[ItemOut, Error]:
         dairies_queries = MongoQueries(collection_name="dairies")
@@ -45,8 +50,10 @@ class ItemRepository(MongoQueries):
         except Exception as e:
             return Error(detail=str(e))
 
+
     def item_in_to_out(self, id: int, account_id:str ,item: ItemIn) -> ItemOut:
         return ItemOut(id=id, account_id=account_id ,**item.dict())
+
 
     def update_dairy(self, item_id: int, account_id: str, item: ItemIn) -> Union[ItemOut, Error]:
         dairies_queries = MongoQueries(collection_name="dairies")
@@ -62,6 +69,7 @@ class ItemRepository(MongoQueries):
             return self.item_in_to_out(item_id, account_id, item)
         else:
             return {"message": f"Could not update {item.name}"}
+
 
     def record_to_item_out(self, record) -> ItemOut:
         if '_id' in record:

@@ -2,10 +2,13 @@ from queries.client import MongoQueries
 from pymongo.errors import DuplicateKeyError
 from models.accounts import Account, AccountIn, AccountOut
 
+
 class DuplicateAccountError(ValueError):
     pass
 
+
 class AccountRepo(MongoQueries):
+
 
     def get(self, username: str) -> Account:
         accounts_queries = MongoQueries(collection_name="accounts")
@@ -14,6 +17,7 @@ class AccountRepo(MongoQueries):
             account['id'] = str(account['_id'])
             return Account(**account)
         return None
+
 
     def create(self, info: AccountIn, hashed_password: str) -> Account:
         accounts_queries = MongoQueries(collection_name="accounts")

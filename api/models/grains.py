@@ -2,8 +2,10 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import date
 
+
 class Error(BaseModel):
     message: str
+
 
 class GrainItemIn(BaseModel):
     name: str
@@ -11,6 +13,7 @@ class GrainItemIn(BaseModel):
     expiration_date: date
     measurement: str
     store_name: Optional[str]
+
 
 class GrainItemOut(BaseModel):
     id: str
