@@ -19,7 +19,7 @@ def add_produce(item: ItemIn, response: Response,
 
 @router.get("/produce/mine", response_model=Union[List[ItemOut], Error])
 def get_all_for_account(account_data: dict = Depends(authenticator.get_current_account_data),
-                        repo: ItemRepository=Depends()):
+                        repo: ItemRepository = Depends()):
     return repo.get_all_for_account(account_id=account_data['id'])
 
 

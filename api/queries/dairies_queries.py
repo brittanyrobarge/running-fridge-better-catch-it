@@ -40,7 +40,7 @@ class ItemRepository(MongoQueries):
         dairies_queries = MongoQueries(collection_name="dairies")
         try:
             item_dict = item.dict()
-            item_dict['account_id']=account_id
+            item_dict['account_id'] = account_id
             if 'expiration_date' in item_dict:
                 item_dict['expiration_date'] = datetime.combine(item_dict['expiration_date'], datetime.min.time())
             result = dairies_queries.collection.insert_one(item_dict)
@@ -58,7 +58,7 @@ class ItemRepository(MongoQueries):
     def update_dairy(self, item_id: int, account_id: str, item: ItemIn) -> Union[ItemOut, Error]:
         dairies_queries = MongoQueries(collection_name="dairies")
         item_dict = item.dict()
-        item_dict['account_id']=account_id
+        item_dict['account_id'] = account_id
         if 'expiration_date' in item_dict:
             item_dict['expiration_date'] = datetime.combine(item_dict['expiration_date'], datetime.min.time())
         result = dairies_queries.collection.update_one(
