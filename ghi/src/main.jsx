@@ -5,39 +5,33 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import { store } from './app/store'
-import { store } from './app/store'
 import { Provider } from 'react-redux'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Error from './pages/Error.jsx'
 import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp.jsx'
+import Profile from './pages/Profile.jsx'
 import Beverages from './pages/BeverageDetail.jsx'
-import GrainList from './pages/GrainList.jsx'
 import BeverageList from './pages/BeverageList.jsx'
-import BeverageList from './pages/BeverageList.jsx'
-import Grains from './pages/Grains.jsx'
-import DairiesList from './pages/DairiesList.jsx'
-import Dairies from './pages/Dairies.jsx'
-import Proteins from './pages/ProteinDetail.jsx'
-import ProteinList from './pages/ProteinList.jsx'
-import ProteinList from './pages/ProteinList.jsx'
-import Produce from './pages/ProduceDetail.jsx'
-import ProduceList from './pages/ProduceList.jsx'
-import ProduceList from './pages/ProduceList.jsx'
 import UpdateBeverage from './pages/BeverageUpdate.jsx'
 import BeverageForm from './pages/CreateBeverage.jsx'
+import DairiesList from './pages/DairiesList.jsx'
+import Dairies from './pages/Dairies.jsx'
 import DairyForm from './pages/CreateDairy.jsx'
 import UpdateDairy from './pages/DairyUpdate.jsx'
-import Profile from './pages/Profile.jsx'
+import GrainList from './pages/GrainList.jsx'
+import Grains from './pages/Grains.jsx'
 import UpdateGrain from './pages/GrainUpdate.jsx'
 import GrainForm from './pages/CreateGrain.jsx'
-import UpdateProduce from './pages/ProduceUpdate.jsx'
-import ProduceForm from './pages/CreateProduce.jsx'
+import Proteins from './pages/ProteinDetail.jsx'
+import ProteinList from './pages/ProteinList.jsx'
 import UpdateProtein from './pages/ProteinUpdate.jsx'
 import ProteinForm from './pages/CreateProtein.jsx'
-import UpdateGrain from './pages/GrainUpdate.jsx'
-import GrainForm from './pages/CreateGrain.jsx'
+import Produce from './pages/ProduceDetail.jsx'
+import ProduceList from './pages/ProduceList.jsx'
+import UpdateProduce from './pages/ProduceUpdate.jsx'
+import ProduceForm from './pages/CreateProduce.jsx'
 
 const router = createBrowserRouter([
     {
@@ -54,17 +48,14 @@ const router = createBrowserRouter([
             { path: 'beverages', element: <BeverageList /> },
             { path: 'beverages/create', element: <BeverageForm /> },
             { path: 'beverages/:item_id/update', element: <UpdateBeverage /> },
-            { path: 'grains', element: <GrainList />},
-            { path: 'grains/:item_id', element: <Grains /> },
             { path: 'dairies/:item_id', element: <Dairies /> },
             { path: 'dairies', element: <DairiesList /> },
             { path: 'dairies/create', element: <DairyForm /> },
             { path: 'dairies/:item_id/update', element: <UpdateDairy /> },
             { path: 'grains/:item_id/update', element: <UpdateGrain /> },
             { path: 'grains/create', element: <GrainForm /> },
-            { path: 'dairies', element: <DairiesList />},
-            { path: 'dairies/:item_id', element: <Dairies />},
-            { path: 'grains/:item_id', element: <Grains />},
+            { path: 'grains', element: <GrainList /> },
+            { path: 'grains/:item_id', element: <Grains /> },
             { path: 'proteins', element: <ProteinList />},
             { path: 'proteins/:item_id', element: <Proteins />},
             { path: 'proteins/:item_id/update', element: <UpdateProtein /> },
@@ -73,7 +64,6 @@ const router = createBrowserRouter([
             { path: 'produce/:item_id', element: <Produce /> },
             { path: 'produce/:item_id/update', element: <UpdateProduce /> },
             { path: 'produce/create', element: <ProduceForm />},
-            { path: 'grains/:item_id', element: <Grains />},
         ],
     },
 ])
