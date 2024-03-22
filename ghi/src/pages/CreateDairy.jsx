@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useCreateDairyMutation } from '../app/fridgeSlice'
 
 const DairyForm = () => {
-    const [createdairy, result] = useCreateDairyMutation()
+    const [createDairy, result] = useCreateDairyMutation()
     const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
-    const [dairyForm, setdairyForm] = useState({
+    const [dairyForm, setDairyForm] = useState({
         name: '',
         cost: '',
         store_name: '',
@@ -16,16 +16,16 @@ const DairyForm = () => {
     const handleFormChange = (event) => {
         const key = event.target.name
         const value = event.target.value
-        setdairyForm({ ...dairyForm, [key]: value })
+        setDairyForm({ ...dairyForm, [key]: value })
     }
     const handleSubmit = async (event) => {
-        
+        event.preventDefault()
         setErrorMessage('')
-        createdairy(dairyForm)
+        createDairy(dairyForm)
     }
     useEffect(() => {
         if (result.isSuccess) {
-            navigate('/dairies')
+            navigate('/')
         } else if (result.isError) {
             setErrorMessage(result.error.data.detail)
             console.error('Error:', result.error)

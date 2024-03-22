@@ -51,7 +51,7 @@ function BeverageList() {
                             <p>Cost: {beverage.cost}</p>
                             <p>Expiration: {beverage.expiration_date}</p>
                             <p>Measurement: {beverage.measurement}</p>
-                            <form onSubmit={(e) => submitToRedux(e, item_id)}></form>
+                            <form onSubmit={(e) => submitToRedux(e, item_id)}>
                             <div className="flex justify-between mt-4">
                                 <Link
                                     to={`/beverages/${beverage.id}`}
@@ -72,6 +72,7 @@ function BeverageList() {
                                     Update
                                 </Link>
                             </div>
+                        </form>
                         </motion.div>
                     ))}
                 </div>
@@ -79,4 +80,5 @@ function BeverageList() {
         </div>
     )
 }
+
 export default BeverageList

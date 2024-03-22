@@ -51,7 +51,7 @@ function GrainList() {
                             <p>Cost: {grain.cost}</p>
                             <p>Expiration: {grain.expiration_date}</p>
                             <p>Measurement: {grain.measurement}</p>
-                            <form onSubmit={(e) => submitToRedux(e, item_id)}></form>
+                            <form onSubmit={(e) => submitToRedux(e, item_id)}>
                             <div className="flex justify-between mt-4">
                                 <Link
                                     to={`/grains/${grain.id}`}
@@ -72,7 +72,8 @@ function GrainList() {
                                     Update
                                 </Link>
                             </div>
-                        </motion.div>
+                        </form>
+                    </motion.div>
                     ))}
                 </div>
             </div>

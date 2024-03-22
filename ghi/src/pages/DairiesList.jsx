@@ -1,4 +1,8 @@
-import { useGetAllDairyQuery, useDeleteDairyMutation } from '../app/fridgeSlice'
+import React from 'react'
+import {
+     useGetAllDairyQuery, 
+     useDeleteDairyMutation 
+} from '../app/fridgeSlice'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
@@ -19,7 +23,6 @@ function DairiesList() {
     }
     const [lightOn, setLightOn] = useState(true)
     const toggleLight = () => setLightOn(!lightOn)
-
     if (isLoading)
         return <div className="text-center text-blue-500">Loading...</div>
     return (
