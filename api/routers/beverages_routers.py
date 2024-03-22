@@ -18,15 +18,8 @@ def add_beverage(item: ItemIn, response: Response, account_data: dict =
 
 
 @router.get("/beverages/mine", response_model=Union[List[ItemOut], Error])
-<<<<<<< HEAD
 def get_all_beverages(account_data: dict = Depends(authenticator.get_current_account_data), repo: ItemRepository=Depends()):
     return repo.get_all_beverages(account_id=account_data['id'])
-=======
-def get_all_for_account(account_data: dict =
-                        Depends(authenticator.get_current_account_data),
-                        repo: ItemRepository = Depends()):
-    return repo.get_all_for_account(account_id=account_data['id'])
->>>>>>> 63b01b6dbc2c361b7d1719fc69bb3d3e6ec51a03
 
 
 @router.put("/beverages/{item_id}", response_model=Union[ItemOut, Error])

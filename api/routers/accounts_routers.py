@@ -51,8 +51,6 @@ async def get(
             "type": "Bearer",
             "account": account,
         }
-<<<<<<< HEAD
-=======
 
 
 @router.get("/token", response_model=AccountToken | None)
@@ -66,4 +64,3 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
->>>>>>> 63b01b6dbc2c361b7d1719fc69bb3d3e6ec51a03
