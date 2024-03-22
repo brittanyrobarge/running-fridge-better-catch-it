@@ -19,6 +19,10 @@ function ProduceList() {
             console.error('Error deleting item:', error)
         }
     }
+    const submitToRedux = (e, item_id) => {
+        e.preventDefault()
+        changeName(item_id)
+    }
 
     const [lightOn, setLightOn] = useState(true)
     const toggleLight = () => setLightOn(!lightOn)
@@ -55,6 +59,7 @@ function ProduceList() {
                         <p>Cost: {produce.cost}</p>
                         <p>Expiration: {produce.expiration_date}</p>
                         <p>Measurement: {produce.measurement}</p>
+                        <form onSubmit={(e) => submitToRedux(e, item_id)}></form>
                         <div className="flex justify-between mt-4">
                             <Link
                                 to={`/produce/${produce.id}`}

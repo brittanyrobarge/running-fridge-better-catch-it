@@ -17,6 +17,10 @@ function BeverageList() {
             console.error('Error deleting item:', error)
         }
     }
+    const submitToRedux = (e, item_id) => {
+        e.preventDefault()
+        changeName(item_id)
+    }
     const [lightOn, setLightOn] = useState(true)
     const toggleLight = () => setLightOn(!lightOn)
     if (isLoading)
@@ -47,6 +51,7 @@ function BeverageList() {
                             <p>Cost: {beverage.cost}</p>
                             <p>Expiration: {beverage.expiration_date}</p>
                             <p>Measurement: {beverage.measurement}</p>
+                            <form onSubmit={(e) => submitToRedux(e, item_id)}></form>
                             <div className="flex justify-between mt-4">
                                 <Link
                                     to={`/beverages/${beverage.id}`}
