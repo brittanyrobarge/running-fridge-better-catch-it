@@ -19,8 +19,8 @@ def add_protein(item: ItemIn, response: Response, account_data:
 
 @router.get("/proteins/mine", response_model=Union[List[ItemOut], Error])
 def get_all_proteins(account_data: dict =
-                    Depends(authenticator.get_current_account_data),
-                    repo: ItemRepository = Depends()):
+                Depends(authenticator.get_current_account_data),
+                repo: ItemRepository = Depends()):
     return repo.get_all_for_account(account_id=account_data['id'])
 
 

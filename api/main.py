@@ -1,4 +1,5 @@
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 from routers import (accounts_routers,
                      beverages_routers,
                      dairies_routers,
@@ -19,6 +20,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/api/launch-details")
 def launch_details():
