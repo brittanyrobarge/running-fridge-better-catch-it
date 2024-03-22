@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, Response, HTTPException
-from queries.grains_queries import GrainItemIn, ItemRepository, GrainItemOut, Error
+from queries.grains_queries import (GrainItemIn,
+                                    ItemRepository,
+                                    GrainItemOut, Error)
 from typing import Union, Optional, List
 from authenticator import authenticator
 
@@ -22,8 +24,8 @@ def get_all_for_account(account_data: dict =
 
 @router.put("/grains/{item_id}", response_model=Union[GrainItemOut, Error])
 def update_grain(item_id: str, item: GrainItemIn, account_data: dict =
-                 Depends(authenticator.get_current_account_data),
-                 repo: ItemRepository = Depends()) -> Union[Error, GrainItemOut]:
+                 Depends(authenticator.get_current_account_data), repo:
+                 ItemRepository = Depends()) -> Union[Error, GrainItemOut]:
     grain = repo.update_grain(item_id, account_data['id'], item)
     if grain is None:
         raise HTTPException(status_code=404, detail="beverage not found")
