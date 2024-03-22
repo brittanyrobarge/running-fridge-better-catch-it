@@ -1,13 +1,12 @@
 import { useState , useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useGetProduceQuery, useUpdateProduceMutation, useGetAllProduceQuery } from '../app/fridgeSlice'
-import { query } from '../app/querySlice'
-import { useDispatch } from 'react-redux'
+import { useGetProduceQuery, useUpdateProduceMutation } from '../app/fridgeSlice'
+
 
 function UpdateProduce() {
     const { item_id } = useParams()
     const navigate = useNavigate()
-    const { data: produce, refetch, error } = useGetProduceQuery(item_id)
+    const { data: produce, error } = useGetProduceQuery(item_id)
     const [updateProduce] = useUpdateProduceMutation()
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,8 +36,6 @@ function UpdateProduce() {
             [e.target.name]: e.target.value,
         })
     }
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
