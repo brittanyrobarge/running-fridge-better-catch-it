@@ -12,14 +12,14 @@ class DuplicateAccountError(ValueError):
 class ItemRepository(MongoQueries):
 
 
-def get_protein(self, item_id: str, account_id: str) -> Optional[ItemOut]:
-    proteins_queries = MongoQueries(collection_name="proteins")
-    record = proteins_queries.collection.find_one(
-        {"_id": ObjectId(item_id), "account_id": account_id})
-    if record:
-        return self.record_to_item_out(record)
-    else:
-        return {"message": f"Could not find that {item_id}"}
+    def get_protein(self, item_id: str, account_id: str) -> Optional[ItemOut]:
+        proteins_queries = MongoQueries(collection_name="proteins")
+        record = proteins_queries.collection.find_one(
+            {"_id": ObjectId(item_id), "account_id": account_id})
+        if record:
+            return self.record_to_item_out(record)
+        else:
+            return {"message": f"Could not find that {item_id}"}
 
 
 def delete_protein(self, item_id: str, account_id: str) -> bool:
