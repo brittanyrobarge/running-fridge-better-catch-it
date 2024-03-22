@@ -9,7 +9,8 @@ export const fridgeApi = createApi({
         getAllBeverages: builder.query({
             query: () => '/api/beverages/beverages/mine',
             refetchOnMountOrArgChange: true,
-            providesTags: ['BeverageList']
+            providesTags: ['BeverageList'],
+            providesTags: ['BeverageList'],
         }),
         getBeverage: builder.query({
             query: (item_id) => `/api/beverages/beverages/${item_id}`,
@@ -19,6 +20,7 @@ export const fridgeApi = createApi({
             query: (item_id) => ({
                 url: `api/beverages/beverages/${item_id}`,
                 method: 'DELETE',
+                invalidatesTags: ['BeverageList'],
             }),
         }),
 
@@ -28,7 +30,8 @@ export const fridgeApi = createApi({
                 method: 'PUT',
                 body: updatedData,
             }),
-            invalidatesTags: ['BeverageList']
+            invalidatesTags: ['BeverageList'],
+            invalidatesTags: ['BeverageList'],
         }),
 
         createBeverage: builder.mutation({
@@ -39,10 +42,41 @@ export const fridgeApi = createApi({
             }),
             invalidatesTags: ['BeverageList'],
         }),
-
+        getAllDairy: builder.query({
+            query: () => '/api/dairies/dairies/mine',
+            refetchOnMountOrArgChange: true,
+            providesTags: ['Dairies']
+        }),
+        getDairy: builder.query({
+            query: (item_id) => `/api/dairies/dairies/${item_id}`,
+            credentials: 'include',
+        }),
+        deleteDairy: builder.mutation({
+            query: (item_id) => ({
+                url: `api/dairies/dairies/${item_id}`,
+                method: 'DELETE',
+            }),
+        }),
+        createDairy: builder.mutation({
+            query: (createData) => ({
+                url: '/api/dairies/dairies',
+                body: createData,
+                method: 'POST',
+            }),
+            invalidatesTags: ['DairyList'],
+        }),
+        updateDairy: builder.mutation({
+            query: ({ item_id, updatedData }) => ({
+                url: `api/dairies/dairies/${item_id}`,
+                method: 'PUT',
+                body: updatedData,
+            }),
+            invalidatesTags: ['DairyList'],
+        }),
         getAllGrains: builder.query({
             query: () => '/api/grains/grains/mine',
             refetchOnMountOrArgChange: true,
+            providesTags: ['GrainList']
         }),
         getGrain: builder.query({
             query: (item_id) => `/api/grains/grains/${item_id}`,
@@ -52,7 +86,25 @@ export const fridgeApi = createApi({
             query: (item_id) => ({
                 url: `api/grains/grains/${item_id}`,
                 method: 'DELETE',
+                invalidatesTags: ['GrainList']
             }),
+        updateGrain: builder.mutation({
+            query: ({ item_id, updatedData }) => ({
+                url: `api/grains/grains/${item_id}`,
+                method: 'PUT',
+                body: updatedData,
+            }),
+            invalidatesTags: ['GrainList'],
+        }),
+
+        createGrain: builder.mutation({
+            query: (createData) => ({
+                url: '/api/grains/grains',
+                body: createData,
+                method: 'POST',
+            }),
+            invalidatesTags: ['GrainList'],
+        }),
         }),
         getAllProteins: builder.query({
             query: () => '/api/proteins/proteins/mine',
@@ -125,9 +177,16 @@ export const {
     useDeleteBeverageMutation,
     useUpdateBeverageMutation,
     useCreateBeverageMutation,
-    useDeleteGrainMutation,
     useGetAllGrainsQuery,
     useGetGrainQuery,
+    useDeleteGrainMutation,
+    useUpdateGrainMutation,
+    useCreateGrainMutation,
+    useGetDairyQuery,
+    useGetAllDairyQuery,
+    useDeleteDairyMutation,
+    useCreateDairyMutation,
+    useUpdateDairyMutation,
     useDeleteProteinMutation,
     useGetAllProteinsQuery,
     useGetProteinQuery,

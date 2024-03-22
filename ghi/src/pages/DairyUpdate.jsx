@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
-    useGetBeverageQuery,
-    useUpdateBeverageMutation,
-    useGetAllBeveragesQuery,
+    useGetDairyQuery,
+    useUpdateDairyMutation,
+
 } from '../app/fridgeSlice'
 import { query } from '../app/querySlice'
 import { useDispatch } from 'react-redux'
 
-function UpdateBeverage() {
+function UpdateDairy() {
     const { item_id } = useParams()
     const navigate = useNavigate()
-    const { data: beverage, refetch, error } = useGetBeverageQuery(item_id)
-    const [updateBeverage] = useUpdateBeverageMutation()
+    // const dispatch = useDispatch
+    const { data: dairy, refetch, error } = useGetDairyQuery(item_id)
+    const [updateDairy] = useUpdateDairyMutation()
     const [isLoading, setIsLoading] = useState(false)
 
     const [formData, setFormData] = useState({
@@ -22,17 +23,20 @@ function UpdateBeverage() {
         measurement: '',
         store_name: '',
     })
+
+    // dispatch(dairyUpdated(response.data))
+
     useEffect(() => {
-        if (beverage) {
+        if (dairy) {
             setFormData({
-                name: beverage.name,
-                cost: beverage.cost,
-                expiration_date: beverage.expiration_date,
-                measurement: beverage.measurement,
-                store_name: beverage.store_name,
+                name: dairy.name,
+                cost: dairy.cost,
+                expiration_date: dairy.expiration_date,
+                measurement: dairy.measurement,
+                store_name: dairy.store_name,
             })
         }
-    }, [beverage])
+    }, [dairy])
 
     const handleChange = (e) => {
         setFormData({
@@ -45,15 +49,29 @@ function UpdateBeverage() {
         e.preventDefault()
         setIsLoading(true)
         try {
-            await updateBeverage({ item_id, updatedData: formData }).unwrap()
-            navigate('/beverages')
+            await updateDairy({ item_id, updatedData: formData }).unwrap()
+
+            // dispatchEvent(dairyUpdated(response.data))
+            navigate('/dairies')
             console.log('Calling refetch...')
+            // Optionally, redirect to a different page after successful update
+            // history.push('/dairys');
         } catch (error) {
-            console.error('Error updating beverage:', error)
+            console.error('Error updating dairy:', error)
         } finally {
             setIsLoading(false)
         }
     }
+
+    // const changeHandler = (e) => {
+    //     e.preventDefault()
+    //     setName(e.target.value)
+    // }
+
+    // const submitToRedux = (e, item_id) => {
+    //     e.preventDefault()
+    //     changeName(item_id)
+    // }
 
     console.log('isLoading:', isLoading)
 
@@ -65,7 +83,7 @@ function UpdateBeverage() {
         <div className="bg-blue-950 min-h-screen flex items-center justify-center">
             <div className="bg-white shadow-xl rounded-lg p-8 border border-blue-300 max-w-md w-full">
                 <h1 className="text-2xl font-bold mb-6 text-blue-800">
-                    Update Beverage
+                    Update dairy
                 </h1>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
@@ -137,7 +155,7 @@ function UpdateBeverage() {
                         type="submit"
                         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                     >
-                        Update Beverage
+                        Update dairy
                     </button>
                 </form>
             </div>
@@ -145,4 +163,4 @@ function UpdateBeverage() {
     )
 }
 
-export default UpdateBeverage
+export default UpdateDairy
