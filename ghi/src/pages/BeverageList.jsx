@@ -10,7 +10,6 @@ import { useState } from 'react'
 function BeverageList() {
     const { data, isLoading } = useGetAllBeveragesQuery()
     const [deleteBeverage] = useDeleteBeverageMutation()
-
     const handleDelete = async (item_id) => {
         try {
             await deleteBeverage(item_id)
@@ -18,22 +17,18 @@ function BeverageList() {
             console.error('Error deleting item:', error)
         }
     }
-
     const [lightOn, setLightOn] = useState(true)
     const toggleLight = () => setLightOn(!lightOn)
-
     if (isLoading)
         return <div className="text-center text-blue-500">Loading...</div>
-
     return (
         <div className="p-6 fridge-bg min-h-screen">
             <h1 className="text-2xl font-bold mb-6 text-blue-800">
                 Beverages in the Fridge
             </h1>
             <div
-                className={`p-6 ${
-                    lightOn ? 'bg-blue-400' : 'bg-gray-800'
-                } min-h-screen transition duration-500`}
+                className={`p-6 ${lightOn ? 'bg-blue-400' : 'bg-gray-800'
+                    } min-h-screen transition duration-500`}
             >
                 <button onClick={toggleLight} className="btn btn-sm">
                     {lightOn ? 'Turn Light Off' : 'Turn Light On'}
@@ -45,9 +40,8 @@ function BeverageList() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: index * 0.1 }}
-                            className={`p-4 bg-blue-800 rounded-lg shadow-lg ${
-                                index < data.length - 1 ? 'shelf' : ''
-                            }`}
+                            className={`p-4 bg-blue-800 rounded-lg shadow-lg ${index < data.length - 1 ? 'shelf' : ''
+                                }`}
                         >
                             <h3 className="font-bold">{beverage.name}</h3>
                             <p>Cost: {beverage.cost}</p>
@@ -80,5 +74,4 @@ function BeverageList() {
         </div>
     )
 }
-
 export default BeverageList

@@ -45,12 +45,6 @@ export const Toggle = () => {
                 >
                     <ul className="space-y-2 p-4">
                         <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
-                            <Link to={'/grains'} className="flex items-center">
-                                Grains
-                            </Link>
-                        </li>
-
-                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
                             <Link
                                 to={'/beverages'}
                                 className="flex items-center"
@@ -58,7 +52,19 @@ export const Toggle = () => {
                                 Beverages
                             </Link>
                         </li>
-
+                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
+                            <Link
+                                to={'/dairies'}
+                                className="flex items-center"
+                            >
+                                Dairies
+                            </Link>
+                        </li>
+                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
+                            <Link to={'/grains'} className="flex items-center">
+                                Grains
+                            </Link>
+                        </li>
                         <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
                             <Link to={'/produce'} className="flex items-center">
                                 Produce
@@ -71,15 +77,6 @@ export const Toggle = () => {
                                 className="flex items-center"
                             >
                                 Proteins
-                            </Link>
-                        </li>
-
-                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
-                            <Link
-                                to={'/dairies'}
-                                className="flex items-center"
-                            >
-                                Dairies
                             </Link>
                         </li>
 
@@ -103,22 +100,12 @@ export const Toggle = () => {
 
                         <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
                             <Link
-                                to={'/dairies/create'}
+                                to={'/grains/create'}
                                 className="flex items-center"
                             >
-                                Add Dairy
+                                Add Grains
                             </Link>
                         </li>
-
-                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
-                            <Link
-                                to={'/proteins/create'}
-                                className="flex items-center"
-                            >
-                                Add Protein
-                            </Link>
-                        </li>
-
                         <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
                             <Link
                                 to={'/produce/create'}
@@ -127,7 +114,14 @@ export const Toggle = () => {
                                 Add Produce
                             </Link>
                         </li>
-                        
+                        <li className="hover:bg-blue-700 p-2 rounded-md transition-colors duration-200">
+                            <Link
+                                to={'/proteins/create'}
+                                className="flex items-center"
+                            >
+                                Add Protein
+                            </Link>
+                        </li> 
                     </ul>
                 </motion.nav>
                 <div className="flex bg-blue-700 p-4 justify-center">
