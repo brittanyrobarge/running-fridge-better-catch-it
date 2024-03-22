@@ -27,6 +27,7 @@ def test_add_protein():
     res = client.post("/api/proteins/proteins", json=item)
     assert res.status_code == 401
 
+
 def test_delete_protein():
     app.dependency_overrides[ItemRepository] = FakeItemRepository
     item = {
@@ -38,6 +39,7 @@ def test_delete_protein():
         }
     res = client.post("/api/proteins/proteins", json=item)
     assert res.status_code == 401
+
 
 def test_get_protein():
     app.dependency_overrides[ItemRepository] = FakeItemRepository
@@ -51,6 +53,7 @@ def test_get_protein():
     res = client.post("/api/proteins/proteins", json=item)
     assert res.status_code == 401
 
+
 def test_update_protein():
     app.dependency_overrides[ItemRepository] = FakeItemRepository
     item = {
@@ -62,6 +65,7 @@ def test_update_protein():
         }
     res = client.post("/api/proteins/proteins", json=item)
     assert res.status_code == 401
+
 
 def test_get_all_for_account():
     app.dependency_overrides[ItemRepository] = FakeItemRepository
