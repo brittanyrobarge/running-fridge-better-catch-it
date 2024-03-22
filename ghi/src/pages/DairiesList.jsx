@@ -51,7 +51,7 @@ function DairiesList() {
                             <p>Cost: {dairy.cost}</p>
                             <p>Expiration: {dairy.expiration_date}</p>
                             <p>Measurement: {dairy.measurement}</p>
-                            <form onSubmit={(e) => submitToRedux(e, item_id)}>
+                            {/* <form onSubmit={(e) => submitToRedux(e, item_id)}> */}
                                 <div className="flex justify-between mt-4">
                                     <Link
                                         to={`/dairies/${dairy.id}`}
@@ -72,7 +72,7 @@ function DairiesList() {
                                         Update
                                     </Link>
                                 </div>
-                            </form>
+                            {/* </form> */}
                         </motion.div>
                     ))}
                 </div>
