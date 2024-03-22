@@ -58,12 +58,12 @@ def add_protein(self, item: ItemIn,
 
 
 def item_in_to_out(self, id: int, account_id: str,
-                    item: ItemIn) -> ItemOut:
+                   item: ItemIn) -> ItemOut:
     return ItemOut(id=id, account_id=account_id, **item.dict())
 
 
 def update_protein(self, item_id: int, account_id: str,
-                    item: ItemIn) -> Union[ItemOut, Error]:
+                   item: ItemIn) -> Union[ItemOut, Error]:
     proteins_queries = MongoQueries(collection_name="proteins")
     item_dict = item.dict()
     item_dict['account_id'] = account_id
@@ -85,7 +85,7 @@ def record_to_item_out(self, record) -> ItemOut:
         record['id'] = str(record['_id'])
         del record['_id']
     if 'expiration_date' in record and isinstance(
-        record['expiration_date'], datetime):
+            record['expiration_date'], datetime):
         record['expiration_date'] = record['expiration_date'].date()
     if 'cost' in record:
         record['cost'] = str(record['cost'])
@@ -93,8 +93,8 @@ def record_to_item_out(self, record) -> ItemOut:
         record['measurement'] = str(record['measurement'])
     if 'store_name' in record:
         record['store_name'] = str(record['store_name'])
-    required_fields = ['id', 'name', 'cost', 'expiration_date',
-                    'measurement']
+    required_fields = ['id', 'name', 'cost',
+                       'expiration_date', 'measurement']
     for field in required_fields:
         if field not in record:
             print(f'Missing field: {field}')

@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 from jwtdown_fastapi.authentication import Token
 from bson.objectid import ObjectId
 
@@ -10,14 +9,14 @@ class PydanticObjectId(ObjectId):
         yield cls.validate
 
 
-    @classmethod
-    def validate(cls, value: ObjectId | str) -> ObjectId:
-        if value:
-            try:
-                ObjectId(value)
-            except ValueError:
-                raise ValueError(f"Not a valid object id: {value}")
-        return value
+@classmethod
+def validate(cls, value: ObjectId | str) -> ObjectId:
+    if value:
+        try:
+            ObjectId(value)
+        except ValueError:
+            raise ValueError(f"Not a valid object id: {value}")
+    return value
 
 
 class DuplicateAccountError(ValueError):

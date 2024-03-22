@@ -1,10 +1,12 @@
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
-from models.accounts import  AccountOut, Account
+from models.accounts import AccountOut, Account
 from queries.accounts_queries import AccountRepo
 
+
 class MyAuthenticator(Authenticator):
+
     async def get_account_data(
         self,
         username: str,
@@ -23,5 +25,6 @@ class MyAuthenticator(Authenticator):
 
     def get_account_data_for_cookie(self, account: AccountOut):
         return account.username, AccountOut(**account.dict())
+
 
 authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])

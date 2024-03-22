@@ -17,8 +17,8 @@ def add_grain(item: GrainItemIn,  response: Response, account_data: dict =
 
 @router.get("/grains/mine", response_model=Union[List[GrainItemOut], Error])
 def get_all_grains(account_data: dict =
-                        Depends(authenticator.get_current_account_data),
-                        repo: ItemRepository = Depends()):
+                   Depends(authenticator.get_current_account_data),
+                   repo: ItemRepository = Depends()):
     return repo.get_all_for_account(account_id=account_data['id'])
 
 
