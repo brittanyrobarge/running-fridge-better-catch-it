@@ -1,19 +1,23 @@
 from fastapi.testclient import TestClient
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from authenticator import authenticator
 from routers.proteins_routers import router
 from bson import ObjectId
-import pytest
+
 
 app = FastAPI()
 app.include_router(router)
 
+
 def mock_get_current_account_data():
     return {"id": "test_account_id", "username": "testuser"}
 
+
 app.dependency_overrides[authenticator.get_current_account_data] = mock_get_current_account_data
 
+
 client = TestClient(app)
+
 
 valid_test_id = str(ObjectId())
 
@@ -29,10 +33,12 @@ def test_add_protein():
     data = response.json()
     assert data["name"] == "Test protein"
 
+
 def test_get_all_proteins():
     response = client.get("/api/proteins/proteins/mine")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
 
 def test_update_protein():
     item_id = valid_test_id
@@ -43,6 +49,7 @@ def test_update_protein():
         "measurement": "L",
     })
     assert response.status_code == 200 or response.status_code == 404
+
 
 def test_get_protein():
     item_id = valid_test_id
